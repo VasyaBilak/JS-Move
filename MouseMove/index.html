@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML/Css</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0"/>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/my.js"></script>
+</head>
+<body>
+<div style="width:200px; height:200px; background: green; position: absolute" onMouseDown="move(this)"></div>  <!--  onMouseDown="move(this) те саме що id але непотрібно в скріпті getElementById   -->
+
+<script>
+    function move(div){
+    document.onmousedown=function(){return false}
+    div.style.cursor='move';
+    document.onmousemove=function(e){
+        x=e.pageX;
+        y=e.pageY;
+        left=div.offsetLeft;
+        top=div.offsetTop;
+        left=x-left;
+        top=y-top;
+        document.onmousemove=function(e){
+            x=e.pageX;
+            y=e.pageY;
+            div.style.top=y+'px';
+            div.style.left=x-left+'px';
+        }
+    }
+    document.onmouseup=function(){
+    div.style.cursor='auto';
+    document.onmousedown=function(){}
+    document.onmousemove=function(){}
+    }
+}
+
+    </script>
+</body>
+</html>
+
